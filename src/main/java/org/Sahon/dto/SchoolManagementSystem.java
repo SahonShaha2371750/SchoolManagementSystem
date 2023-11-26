@@ -11,7 +11,7 @@ public class SchoolManagementSystem {
     }
 
     /**
-     * Displays all teachers and their information
+     * Displays all teachers
      */
     public void printTeachers() {
 
@@ -73,9 +73,9 @@ public class SchoolManagementSystem {
      * Creates a new teacher
      * @param fname first name of the teacher
      * @param lname last name of the teacher
-     * @param id
+     * @param departmentId the department that the teacher will be assigned to
      */
-    public void addTeacher(String fname, String lname, String id) { // idk 3rd parameter
+    public void addTeacher(String fname, String lname, String departmentId) {
 
     }
 
@@ -89,7 +89,14 @@ public class SchoolManagementSystem {
     }
 
     /**
-     * Shows all the existing departments and their information
+     * Shows all the existing courses
+     */
+    public void printCourses() {
+
+    }
+
+    /**
+     * Shows all the existing departments
      */
     public void printDepartments() {
 
@@ -99,15 +106,15 @@ public class SchoolManagementSystem {
      * Creates a new student
      * @param fname assigns a first name to the student
      * @param lname assignes a last name to the student
-     * @param id
+     * @param departmentId the department that the student will be assigned to
      */
-    public void addStudent(String fname, String lname, String id) { // idk third parameter
+    public void addStudent(String fname, String lname, String departmentId) {
 
     }
 
     /**
      * Finds the information of the teacher
-     * @param teacherId the id of the teacher who's information will be displayed
+     * @param teacherId the id of the teacher whose information will be displayed
      * @return all the information of the teacher
      */
     public Teacher findTeacher(String teacherId) {
