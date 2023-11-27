@@ -56,7 +56,7 @@ public class SchoolManagementSystem {
      * @param credit Sets the amount of credits for the course
      * @param department Assigns the department in which the course will be in
      */
-    public void addCourse(String courseName, int credit, String department ) { //not sure about 3rd parameter
+    public void addCourse(String courseName, int credit, String department ) {
 
     }
 
