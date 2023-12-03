@@ -1,5 +1,10 @@
 package org.Sahon.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Teacher {
     private final int MAX_TEACHER_NUM = 20;
     private int nextId = 1;

@@ -18,5 +18,7 @@ public class Main {
         school.modifyCourseTeacher("T001", "C001");
 
         school.registerCourse("S001", "C001");
+
+        System.out.println(school);
     }
 }

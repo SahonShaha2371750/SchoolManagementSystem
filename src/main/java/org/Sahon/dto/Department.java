@@ -1,5 +1,10 @@
 package org.Sahon.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Department {
     private final int MAX_DEPARTMENT_NUM = 5;
     private final int nextId = 1;

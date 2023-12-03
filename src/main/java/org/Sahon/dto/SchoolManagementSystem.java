@@ -1,6 +1,10 @@
 package org.Sahon.dto;
 
 public class SchoolManagementSystem {
+    private Department[] departments;
+    private Student[] students;
+    private Teacher[] teachers;
+    private Course[] courses;
 
     /**
      * searches a department based on its departmentId
@@ -8,14 +12,29 @@ public class SchoolManagementSystem {
      * @return all information on the department
      */
     public Department findDepartment(String departmentId) {
-
+        int num = 0; // FIND A BETTER VARIABLE NAME
+        for (int i = 0; i < departments.length; i++) {
+            num++;
+            if ((departments[i]).getId() == departmentId) {
+                break;
+            }
+        }
+        return departments[num];
     }
 
     /**
      * Displays all teachers
      */
     public void printTeachers() {
-
+        for (int i = 0; i < teachers.length; i++) {
+            if (teachers[i] == null) {
+                System.out.println("No departments found");
+                break;
+            }
+            else {
+                System.out.println(teachers[i]);
+            }
+        }
     }
 
     /**
@@ -39,7 +58,15 @@ public class SchoolManagementSystem {
      * Shows all students and their information
      */
     public void printStudents() {
-
+        for (int i = 0; i < students.length; i++) {
+            if (students[i] == null) {
+                System.out.println("No students found");
+                break;
+            }
+            else {
+                System.out.println(students[i]);
+            }
+        }
     }
 
     /**
@@ -48,7 +75,14 @@ public class SchoolManagementSystem {
      * @return all the information of the student
      */
     public Student findStudent(String studentId) {
-
+        int num = 0; // FIND A BETTER VARIABLE NAME
+        for (int i = 0; i < students.length; i++) {
+            num++;
+            if ((students[i]).getId() == studentId) {
+                break;
+            }
+        }
+        return students[num];
     }
 
     /**
@@ -77,7 +111,7 @@ public class SchoolManagementSystem {
      * @param departmentId the department that the teacher will be assigned to
      */
     public void addTeacher(String fname, String lname, String departmentId) {
-        Teacher t1 =
+
     }
 
     /**
@@ -86,21 +120,44 @@ public class SchoolManagementSystem {
      * @return all the information of the course
      */
     public Course findCourse(String courseId) {
-
+        int num = 0; // FIND A BETTER VARIABLE NAME
+        for (int i = 0; i < courses.length; i++) {
+            num++;
+            if ((courses[i]).getId() == courseId) {
+                break;
+            }
+        }
+        return courses[num];
     }
 
     /**
      * Shows all the existing courses
      */
     public void printCourses() {
-
+        for (int i = 0; i < courses.length; i++) {
+            if (courses[i] == null) {
+                System.out.println("No courses found");
+                break;
+            }
+            else {
+                System.out.println(courses[i]);
+            }
+        }
     }
 
     /**
      * Shows all the existing departments
      */
     public void printDepartments() {
-
+        for (int i = 0; i < departments.length; i++) {
+            if (departments[i] == null) {
+                System.out.println("No department found");
+                break;
+            }
+            else {
+                System.out.println(departments[i]);
+            }
+        }
     }
 
     /**
@@ -119,6 +176,14 @@ public class SchoolManagementSystem {
      * @return all the information of the teacher
      */
     public Teacher findTeacher(String teacherId) {
+        int num = 0; // FIND A BETTER VARIABLE NAME
+        for (int i = 0; i < teachers.length; i++) {
+            num++;
+            if ((teachers[i]).getId() == teacherId) {
+                break;
+            }
+        }
+        return teachers[num];
 
     }
 }
