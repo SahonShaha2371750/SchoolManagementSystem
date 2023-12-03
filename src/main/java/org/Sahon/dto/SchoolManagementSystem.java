@@ -1,6 +1,7 @@
 package org.Sahon.dto;
 
 public class SchoolManagementSystem {
+
     /**
      * searches a department based on its departmentId
      * @param departmentId the id of the department
@@ -76,7 +77,7 @@ public class SchoolManagementSystem {
      * @param departmentId the department that the teacher will be assigned to
      */
     public void addTeacher(String fname, String lname, String departmentId) {
-
+        Teacher t1 =
     }
 
     /**

@@ -1,6 +1,8 @@
 package org.Sahon.dto;
 
 public class Teacher {
+    private final int MAX_TEACHER_NUM = 20;
+    private int nextId = 1;
     private String fname;
     private String lname;
     private Department department;
@@ -20,6 +22,6 @@ public class Teacher {
         this.fname = fname;
         this.lname = lname;
         this.department = department;
-        this.id = id;
+        this.id = String.format("T%03d", nextId++);;
     }
 }

@@ -3,11 +3,12 @@ package org.Sahon.dto;
 import java.util.Arrays;
 
 public class Student {
+    private final int nextId = 1;
+    private final int MAX_COURSE_NUM = 5;
     private String fname;
-    private Course[] courses;
+    private Course[] courses = new Course[MAX_COURSE_NUM];
     private String id;
     private int courseNum;
-    private int nextId ;
     private String lname;
     private Department department;
 
@@ -15,9 +16,8 @@ public class Student {
                    Department department) {
         this.fname = fname;
         this.courses = courses;
-        this.id = id;
+        this.id = String.format("S%03d", nextId++);
         this.courseNum = courseNum;
-        this.nextId = nextId;
         this.lname = lname;
         this.department = department;
     }
