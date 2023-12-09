@@ -6,12 +6,13 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Teacher {
-    private final int MAX_TEACHER_NUM = 20;
     private int nextId = 1;
     private String fname;
     private String lname;
     private Department department;
     private String id;
+
+
 
     @Override
     public String toString() {
@@ -23,7 +24,7 @@ public class Teacher {
                 '}';
     }
 
-    public Teacher(String fname, String lname, Department department, String id) {
+    public Teacher(String fname, String lname, Department department) {
         this.fname = fname;
         this.lname = lname;
         this.department = department;
