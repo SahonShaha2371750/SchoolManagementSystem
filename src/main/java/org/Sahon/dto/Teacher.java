@@ -10,9 +10,8 @@ public class Teacher {
     private String fname;
     private String lname;
     private Department department;
+    private Course[] courses;
     private String id;
-
-
 
     @Override
     public String toString() {
@@ -28,6 +27,6 @@ public class Teacher {
         this.fname = fname;
         this.lname = lname;
         this.department = department;
-        this.id = String.format("T%03d", nextId++);;
+        this.id = String.format("T%03d", nextId++);
     }
 }

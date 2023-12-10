@@ -8,6 +8,8 @@ import java.util.Arrays;
 @Getter
 @Setter
 public class Course {
+    private int nextId = 1;
+
     private double credit;
     private String id;
     private Student[] students;
@@ -16,13 +18,12 @@ public class Course {
     private Teacher teacher;
     private String courseName;
 
-    public Course(double credit, String id, Student[] students, Department department, int studentNum, Teacher teacher,
-                  String courseName) {
+    public Course(String courseName, double credit, Department department) {
         this.credit = credit;
-        this.id = id;
+        this.id = String.format("C%03d", nextId++);
         this.students = students;
         this.department = department;
-        this.studentNum = studentNum; // what about MAX_STUDENT_NUM?
+        this.studentNum = studentNum;
         this.teacher = teacher;
         this.courseName = courseName;
     }

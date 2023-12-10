@@ -26,10 +26,10 @@ public class SchoolManagementSystem {
     public Department findDepartment(String departmentId) {
         int num = 0; // FIND A BETTER VARIABLE NAME
         for (int i = 0; i < departments.length; i++) {
-            num++;
             if ((departments[i]).getId().equals(departmentId)) {
                 break;
             }
+            num++;
         }
         return departments[num];
     }
@@ -56,7 +56,7 @@ public class SchoolManagementSystem {
      * @param courseId id of the course that the teacher will get
      */
     public void modifyCourseTeacher(String teacherId, String courseId) {
-
+        findCourse(courseId).setTeacher(findTeacher(teacherId));
     }
 
     /**
@@ -100,10 +100,10 @@ public class SchoolManagementSystem {
     public Student findStudent(String studentId) {
         int num = 0; // FIND A BETTER VARIABLE NAME
         for (int i = 0; i < students.length; i++) {
-            num++;
-            if ((students[i]).getId() == studentId) {
+            if (students[i] != null && (students[i]).getId().equals(studentId)) {
                 break;
             }
+            num++;
         }
         return students[num];
     }
@@ -112,10 +112,19 @@ public class SchoolManagementSystem {
      * Creates a new course
      * @param courseName Adds a name to the course
      * @param credit Sets the amount of credits for the course
-     * @param department Assigns the department in which the course will be in
+     * @param departmentId Assigns the department in which the course will be in
      */
-    public void addCourse(String courseName, int credit, String department ) {
-
+    public void addCourse(String courseName, int credit, String departmentId) {
+        if (courses[MAX_COURSE_NUM - 1] != null) {
+            System.out.println("Maximum amount of courses reached.");
+        } else {
+            for (int i = 0; i < courses.length; i++) {
+                if (courses[i] == null) {
+                    courses[i] = new Course(courseName, credit, findDepartment(departmentId));
+                    break;
+                }
+            }
+        }
     }
 
     /**
@@ -124,7 +133,11 @@ public class SchoolManagementSystem {
      * @param courseId The id of the course
      */
     public void registerCourse(String studentId, String courseId) {
-
+        for (int i = 0; i < courses.length; i++) {
+            courses[i] = findCourse(courseId);
+            findStudent(studentId).setCourses(courses);
+            break;
+        }
     }
 
     /**
@@ -155,7 +168,7 @@ public class SchoolManagementSystem {
         int num = 0; // FIND A BETTER VARIABLE NAME
         for (int i = 0; i < courses.length; i++) {
             num++;
-            if ((courses[i]).getId() == courseId) {
+            if ((courses[i]).getId().equals(courseId)) {
                 break;
             }
         }
@@ -173,7 +186,6 @@ public class SchoolManagementSystem {
             }
             else {
                 System.out.println(courses[i]);
-                break;
             }
         }
     }
@@ -187,10 +199,8 @@ public class SchoolManagementSystem {
                 System.out.println("No department found");
                 break;
             }
-            else {
-                System.out.println(departments[i]);
-                break;
-            }
+            System.out.println(departments[i]);
+
         }
     }
 
@@ -223,7 +233,7 @@ public class SchoolManagementSystem {
         int num = 0; // FIND A BETTER VARIABLE NAME
         for (int i = 0; i < teachers.length; i++) {
             num++;
-            if ((teachers[i]).getId() == teacherId) {
+            if ((teachers[i]).getId().equals(teacherId)) {
                 break;
             }
         }

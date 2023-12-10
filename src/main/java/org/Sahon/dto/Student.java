@@ -27,12 +27,12 @@ public class Student {
     @Override
     public String toString() {
         return "Student{" +
+                "id='" + id + '\'' +
                 "fname='" + fname + '\'' +
                 ", lname='" + lname + '\'' +
-                ", id='" + id + '\'' +
                 ", department=" + department +
                 ", courseNum=" + courseNum +
-                ", courses=" + courses +
+                ", courses=" + Arrays.toString(courses) +
                 '}';
     }
 }
