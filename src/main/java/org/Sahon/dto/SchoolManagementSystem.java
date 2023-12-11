@@ -10,16 +10,19 @@ public class SchoolManagementSystem {
     private Student[] students;
     private Teacher[] teachers;
     private Course[] courses;
+    private String schoolName;
 
-    public SchoolManagementSystem() {
+    public SchoolManagementSystem(String schoolName) {
+        this.schoolName = schoolName;
         this.departments = new Department[MAX_DEPARTMENT_NUM];
         this.students = new Student[MAX_STUDENT_NUM];
         this.teachers = new Teacher[MAX_TEACHER_NUM];
-        this.courses  = new Course[MAX_COURSE_NUM];
+        this.courses = new Course[MAX_COURSE_NUM];
     }
 
     /**
      * searches a department based on its departmentId
+     *
      * @param departmentId the id of the department
      * @return all information on the department
      */
@@ -33,8 +36,7 @@ public class SchoolManagementSystem {
                 num++;
             }
             return departments[num];
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return null;
         }
     }
@@ -52,8 +54,9 @@ public class SchoolManagementSystem {
 
     /**
      * Adds a course to a teacher
+     *
      * @param teacherId the id of the teacher that gets a new course
-     * @param courseId id of the course that the teacher will get
+     * @param courseId  id of the course that the teacher will get
      */
     public void modifyCourseTeacher(String teacherId, String courseId) {
         Teacher teacher = findTeacher(teacherId);
@@ -71,6 +74,7 @@ public class SchoolManagementSystem {
 
     /**
      * Creates a new department
+     *
      * @param departmentName name of the new department
      */
     public void addDepartment(String departmentName) {
@@ -100,6 +104,7 @@ public class SchoolManagementSystem {
 
     /**
      * Finds a student based on their studentId
+     *
      * @param studentId the id of the student
      * @return all the information of the student
      */
@@ -113,16 +118,16 @@ public class SchoolManagementSystem {
                 num++;
             }
             return students[num];
-        }
-        catch (Exception e) {
-            return  null;
+        } catch (Exception e) {
+            return null;
         }
     }
 
     /**
      * Creates a new course
-     * @param courseName Adds a name to the course
-     * @param credit Sets the amount of credits for the course
+     *
+     * @param courseName   Adds a name to the course
+     * @param credit       Sets the amount of credits for the course
      * @param departmentId Assigns the department in which the course will be in
      */
     public void addCourse(String courseName, int credit, String departmentId) {
@@ -141,8 +146,9 @@ public class SchoolManagementSystem {
 
     /**
      * Gives a course to a student based on the id of the course
+     *
      * @param studentId Selects the student which the course will be assigned to
-     * @param courseId The id of the course
+     * @param courseId  The id of the course
      */
     public void registerCourse(String studentId, String courseId) {
         Student student = findStudent(studentId);
@@ -150,40 +156,45 @@ public class SchoolManagementSystem {
 
         if (student == null) {
             System.out.println("Teacher does not exist");
-        }
-        if (course == null) {
+        } else if (course == null) {
             System.out.println("Course does not exist");
-        }
+        } else if (student.getCourseNum() == 5) {
+            System.out.println("Max amount of courses registered for this student");
+        } else if (course.getStudentNum() == 5) {
+            System.out.println("Max amount of students registered for this course");
+        } else {
+            for (int i = 0; i < courses.length; i++) {
+                if (courses[i] == null) {
+                    student.getCourses()[i] = course; // adds the course to the student's list of courses
+                    student.setCourseNum(student.getCourseNum() + 1); // update the number of courses for the student
+                    System.out.println("Latest student info: \n" + student);
+                    break;
+                }
+            }
 
-        for (int i = 0; i < courses.length; i++) {
-            if (courses[i] == null) {
-                student.getCourses()[i] = course; // adds the course to the student's list of courses
-                student.setCourseNum(student.getCourseNum() + 1); // update the number of courses for the student
-                break;
+            for (int i = 0; i < students.length; i++) {
+                if (students[i] == null) {
+                    course.getStudents()[i] = student;  // adds the student to the course's list of students
+                    course.setStudentNum(course.getStudentNum() + 1); // updates the number of students in the course
+                    System.out.println("Latest course info: \n" + course);
+                    break;
+                }
             }
         }
 
-        for (int i = 0; i < students.length; i++) {
-            if (students[i] == null) {
-                course.getStudents()[i] = student;  // adds the student to the course's list of students
-                course.setStudentNum(course.getStudentNum() + 1); // updates the number of students in the course
-                System.out.println("Latest info: \n" + course);
-                break;
-            }
-        }
     }
 
     /**
      * Creates a new teacher
-     * @param fname first name of the teacher
-     * @param lname last name of the teacher
+     *
+     * @param fname        first name of the teacher
+     * @param lname        last name of the teacher
      * @param departmentId the department that the teacher will be assigned to
      */
     public void addTeacher(String fname, String lname, String departmentId) {
         if (teachers[MAX_TEACHER_NUM - 1] != null) {
             System.out.println("Maximum amount of teachers reached.");
-        }
-        else {
+        } else {
             for (int i = 0; i < teachers.length; i++) {
                 if (teachers[i] == null) {
                     teachers[i] = new Teacher(fname, lname, findDepartment(departmentId));
@@ -196,6 +207,7 @@ public class SchoolManagementSystem {
 
     /**
      * Shows all the information of a certain course
+     *
      * @param courseId id of the course
      * @return all the information of the course
      */
@@ -209,8 +221,7 @@ public class SchoolManagementSystem {
                 num++;
             }
             return courses[num];
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return null;
         }
     }
@@ -239,18 +250,18 @@ public class SchoolManagementSystem {
 
     /**
      * Creates a new student
-     * @param fname assigns a first name to the student
-     * @param lname assignes a last name to the student
+     *
+     * @param fname        assigns a first name to the student
+     * @param lname        assignes a last name to the student
      * @param departmentId the department that the student will be assigned to
      */
     public void addStudent(String fname, String lname, String departmentId) {
         if (students[MAX_STUDENT_NUM - 1] != null) {
             System.out.println("Maximum amount of students reached.");
-        }
-        else {
+        } else {
             for (int i = 0; i < students.length; i++) {
                 if (students[i] == null) {
-                    students[i] = new Student(fname, lname,findDepartment(departmentId));
+                    students[i] = new Student(fname, lname, findDepartment(departmentId));
                     System.out.println(students[i] + " added succesfully.");
                     break;
                 }
@@ -260,6 +271,7 @@ public class SchoolManagementSystem {
 
     /**
      * Finds the information of the teacher
+     *
      * @param teacherId the id of the teacher whose information will be displayed
      * @return all the information of the teacher
      */
@@ -267,14 +279,13 @@ public class SchoolManagementSystem {
         try {
             int num = 0;
             for (int i = 0; i < teachers.length; i++) {
-                num++;
                 if ((teachers[i]).getId().equals(teacherId)) {
                     break;
                 }
+                num++;
             }
             return teachers[num];
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return null;
         }
 
