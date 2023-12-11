@@ -24,14 +24,19 @@ public class SchoolManagementSystem {
      * @return all information on the department
      */
     public Department findDepartment(String departmentId) {
-        int num = 0; // FIND A BETTER VARIABLE NAME
-        for (int i = 0; i < departments.length; i++) {
-            if ((departments[i]).getId().equals(departmentId)) {
-                break;
+        try {
+            int num = 0;
+            for (int i = 0; i < departments.length; i++) {
+                if ((departments[i]).getId().equals(departmentId)) {
+                    break;
+                }
+                num++;
             }
-            num++;
+            return departments[num];
         }
-        return departments[num];
+        catch (Exception e) {
+            return null;
+        }
     }
 
     /**
@@ -39,13 +44,8 @@ public class SchoolManagementSystem {
      */
     public void printTeachers() {
         for (int i = 0; i < teachers.length; i++) {
-            if (teachers[i] == null) {
-                System.out.println("No teacher found");
-                break;
-            }
-            else {
+            if (teachers[i] != null) {
                 System.out.println(teachers[i]);
-                break;
             }
         }
     }
@@ -56,7 +56,9 @@ public class SchoolManagementSystem {
      * @param courseId id of the course that the teacher will get
      */
     public void modifyCourseTeacher(String teacherId, String courseId) {
-        findCourse(courseId).setTeacher(findTeacher(teacherId));
+        for (int i = 0; i < courses.length; i++) {
+            findCourse(courseId).setTeacher(findTeacher(teacherId));
+        }
     }
 
     /**
@@ -70,6 +72,7 @@ public class SchoolManagementSystem {
             for (int i = 0; i < departments.length; i++) {
                 if (departments[i] == null) {
                     departments[i] = new Department(departmentName);
+                    System.out.println(departments[i] + " added succesfully.");
                     break;
                 }
             }
@@ -81,13 +84,8 @@ public class SchoolManagementSystem {
      */
     public void printStudents() {
         for (int i = 0; i < students.length; i++) {
-            if (students[i] == null) {
-                System.out.println("No students found");
-                break;
-            }
-            else {
+            if (students[i] != null) {
                 System.out.println(students[i]);
-                break;
             }
         }
     }
@@ -98,14 +96,19 @@ public class SchoolManagementSystem {
      * @return all the information of the student
      */
     public Student findStudent(String studentId) {
-        int num = 0; // FIND A BETTER VARIABLE NAME
-        for (int i = 0; i < students.length; i++) {
-            if (students[i] != null && (students[i]).getId().equals(studentId)) {
-                break;
+        try {
+            int num = 0;
+            for (int i = 0; i < students.length; i++) {
+                if (students[i] != null && (students[i]).getId().equals(studentId)) {
+                    break;
+                }
+                num++;
             }
-            num++;
+            return students[num];
         }
-        return students[num];
+        catch (Exception e) {
+            return  null;
+        }
     }
 
     /**
@@ -121,6 +124,7 @@ public class SchoolManagementSystem {
             for (int i = 0; i < courses.length; i++) {
                 if (courses[i] == null) {
                     courses[i] = new Course(courseName, credit, findDepartment(departmentId));
+                    System.out.println(courses[i] + " added succesfully.");
                     break;
                 }
             }
@@ -134,8 +138,8 @@ public class SchoolManagementSystem {
      */
     public void registerCourse(String studentId, String courseId) {
         for (int i = 0; i < courses.length; i++) {
-            courses[i] = findCourse(courseId);
             findStudent(studentId).setCourses(courses);
+            findCourse(courseId).setStudents(students);
             break;
         }
     }
@@ -154,6 +158,8 @@ public class SchoolManagementSystem {
             for (int i = 0; i < teachers.length; i++) {
                 if (teachers[i] == null) {
                     teachers[i] = new Teacher(fname, lname, findDepartment(departmentId));
+                    System.out.println(teachers[i] + " added successfully");
+                    break;
                 }
             }
         }
@@ -165,14 +171,19 @@ public class SchoolManagementSystem {
      * @return all the information of the course
      */
     public Course findCourse(String courseId) {
-        int num = 0; // FIND A BETTER VARIABLE NAME
-        for (int i = 0; i < courses.length; i++) {
-            num++;
-            if ((courses[i]).getId().equals(courseId)) {
-                break;
+        try {
+            int num = 0;
+            for (int i = 0; i < courses.length; i++) {
+                if (courses[i] != null && (courses[i]).getId().equals(courseId)) {
+                    break;
+                }
+                num++;
             }
+            return courses[num];
         }
-        return courses[num];
+        catch (Exception e) {
+            return null;
+        }
     }
 
     /**
@@ -180,11 +191,7 @@ public class SchoolManagementSystem {
      */
     public void printCourses() {
         for (int i = 0; i < courses.length; i++) {
-            if (courses[i] == null) {
-                System.out.println("No courses found");
-                break;
-            }
-            else {
+            if (courses[i] != null) {
                 System.out.println(courses[i]);
             }
         }
@@ -195,12 +202,9 @@ public class SchoolManagementSystem {
      */
     public void printDepartments() {
         for (int i = 0; i < departments.length; i++) {
-            if (departments[i] == null) {
-                System.out.println("No department found");
-                break;
+            if (departments[i] != null) {
+                System.out.println(departments[i]);
             }
-            System.out.println(departments[i]);
-
         }
     }
 
@@ -218,6 +222,7 @@ public class SchoolManagementSystem {
             for (int i = 0; i < students.length; i++) {
                 if (students[i] == null) {
                     students[i] = new Student(fname, lname,findDepartment(departmentId));
+                    System.out.println(students[i] + " added succesfully.");
                     break;
                 }
             }
@@ -230,14 +235,19 @@ public class SchoolManagementSystem {
      * @return all the information of the teacher
      */
     public Teacher findTeacher(String teacherId) {
-        int num = 0; // FIND A BETTER VARIABLE NAME
-        for (int i = 0; i < teachers.length; i++) {
-            num++;
-            if ((teachers[i]).getId().equals(teacherId)) {
-                break;
+        try {
+            int num = 0;
+            for (int i = 0; i < teachers.length; i++) {
+                num++;
+                if ((teachers[i]).getId().equals(teacherId)) {
+                    break;
+                }
             }
+            return teachers[num];
         }
-        return teachers[num];
+        catch (Exception e) {
+            return null;
+        }
 
     }
 }

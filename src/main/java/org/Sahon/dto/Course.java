@@ -9,6 +9,7 @@ import java.util.Arrays;
 @Setter
 public class Course {
     private int nextId = 1;
+    private static int studentCounter = 0;
 
     private double credit;
     private String id;
@@ -23,7 +24,7 @@ public class Course {
         this.id = String.format("C%03d", nextId++);
         this.students = students;
         this.department = department;
-        this.studentNum = studentNum;
+        this.studentNum = ++studentCounter;
         this.teacher = teacher;
         this.courseName = courseName;
     }
@@ -33,7 +34,7 @@ public class Course {
         return "Course{" +
                 "credit=" + credit +
                 ", id='" + id + '\'' +
-                ", students=" + Arrays.toString(students) +
+                ", students=" + students +
                 ", department=" + department +
                 ", studentNum=" + studentNum +
                 ", teacher=" + teacher +

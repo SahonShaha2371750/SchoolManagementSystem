@@ -11,9 +11,11 @@ public class Main {
         school.printDepartments();
 
         school.addStudent("John", "Doe", "D001");
+        school.addStudent("Jane", "Doe", "D001");
         school.printStudents();
 
-        school.addTeacher("Zach", "Gagnon", "D001");
+        school.addTeacher("James", "White", "D002");
+        school.addTeacher("Yi", "Wang", "D001");
         school.printTeachers();
 
         school.addCourse("Intro to Computer Science", 3, "D001");
@@ -21,9 +23,14 @@ public class Main {
         school.printCourses();
 
         school.modifyCourseTeacher("T001", "C001");
+        school.printTeachers();
+
         school.printCourses();
 
         school.registerCourse("S001", "C001");
         school.printStudents();
+
+        school.printCourses();
+
     }
 }

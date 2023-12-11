@@ -6,11 +6,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Teacher {
-    private int nextId = 1;
+    private static int nextId = 1;
     private String fname;
     private String lname;
     private Department department;
-    private Course[] courses;
     private String id;
 
     @Override

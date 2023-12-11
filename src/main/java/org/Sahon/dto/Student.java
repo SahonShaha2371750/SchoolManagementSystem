@@ -9,30 +9,38 @@ import java.util.Arrays;
 @Setter
 public class Student {
     private int nextId = 1;
-    private final int MAX_COURSE_NUM = 5;
     private String fname;
-    private Course[] courses;
+    private String lname;
+    private String name;
+    private Course[] courses = new Course[5];
     private String id;
     private int courseNum;
-    private String lname;
     private Department department;
 
     public Student(String fname, String lname, Department department) {
         this.fname = fname;
         this.lname = lname;
+        this.name = fname + " " + lname;
         this.id = String.format("S%03d", nextId++);
         this.department = department;
+        this.courseNum++;
     }
 
     @Override
     public String toString() {
+        String courseList = "[";
+        for (int i = 0; i < courses.length; i++) {
+            if (courses[i] != null) {
+                courseList += courses[i].getCourseName() + ", ";
+            }
+        }
         return "Student{" +
                 "id='" + id + '\'' +
                 "fname='" + fname + '\'' +
                 ", lname='" + lname + '\'' +
                 ", department=" + department +
                 ", courseNum=" + courseNum +
-                ", courses=" + Arrays.toString(courses) +
+                ", courses=" + courseList +
                 '}';
     }
 }
