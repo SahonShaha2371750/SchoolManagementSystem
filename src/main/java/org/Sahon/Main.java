@@ -20,17 +20,13 @@ public class Main {
 
         school.addCourse("Intro to Computer Science", 3, "D001");
         school.addCourse("Music Theory", 3, "D002");
-        school.printCourses();
 
         school.modifyCourseTeacher("T001", "C001");
-        school.printTeachers();
 
         school.printCourses();
 
         school.registerCourse("S001", "C001");
+        school.registerCourse("S002", "C002");
         school.printStudents();
-
-        school.printCourses();
-
     }
 }

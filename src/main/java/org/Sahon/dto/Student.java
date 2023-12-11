@@ -8,13 +8,13 @@ import java.util.Arrays;
 @Getter
 @Setter
 public class Student {
-    private int nextId = 1;
+    private static int nextId = 1;
     private String fname;
     private String lname;
     private String name;
     private Course[] courses = new Course[5];
     private String id;
-    private int courseNum;
+    private int courseNum = 0;
     private Department department;
 
     public Student(String fname, String lname, Department department) {
@@ -23,7 +23,6 @@ public class Student {
         this.name = fname + " " + lname;
         this.id = String.format("S%03d", nextId++);
         this.department = department;
-        this.courseNum++;
     }
 
     @Override
@@ -34,6 +33,7 @@ public class Student {
                 courseList += courses[i].getCourseName() + ", ";
             }
         }
+        courseList += "]";
         return "Student{" +
                 "id='" + id + '\'' +
                 "fname='" + fname + '\'' +

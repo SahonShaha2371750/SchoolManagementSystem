@@ -56,9 +56,17 @@ public class SchoolManagementSystem {
      * @param courseId id of the course that the teacher will get
      */
     public void modifyCourseTeacher(String teacherId, String courseId) {
-        for (int i = 0; i < courses.length; i++) {
-            findCourse(courseId).setTeacher(findTeacher(teacherId));
+        Teacher teacher = findTeacher(teacherId);
+        Course course = findCourse(courseId);
+
+        if (teacher == null) {
+            System.out.println("Teacher does not exist");
         }
+        if (course == null) {
+            System.out.println("Course does not exist");
+        }
+        course.setTeacher(teacher);
+        System.out.println("Teacher has been assigned to the course");
     }
 
     /**
@@ -137,10 +145,31 @@ public class SchoolManagementSystem {
      * @param courseId The id of the course
      */
     public void registerCourse(String studentId, String courseId) {
+        Student student = findStudent(studentId);
+        Course course = findCourse(courseId);
+
+        if (student == null) {
+            System.out.println("Teacher does not exist");
+        }
+        if (course == null) {
+            System.out.println("Course does not exist");
+        }
+
         for (int i = 0; i < courses.length; i++) {
-            findStudent(studentId).setCourses(courses);
-            findCourse(courseId).setStudents(students);
-            break;
+            if (courses[i] == null) {
+                student.getCourses()[i] = course; // adds the course to the student's list of courses
+                student.setCourseNum(student.getCourseNum() + 1); // update the number of courses for the student
+                break;
+            }
+        }
+
+        for (int i = 0; i < students.length; i++) {
+            if (students[i] == null) {
+                course.getStudents()[i] = student;  // adds the student to the course's list of students
+                course.setStudentNum(course.getStudentNum() + 1); // updates the number of students in the course
+                System.out.println("Latest info: \n" + course);
+                break;
+            }
         }
     }
 
